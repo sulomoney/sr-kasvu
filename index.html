@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SR Kasvu rakentaa nettisivut ja Google-näkyvyyden pk-yrityksille. Kasva digitaalisesti — enemmän asiakkaita verkosta.">
+<title>SR Kasvu — Nettisivut & SEO pk-yrityksille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FAFAF8;
+  --bg2: #F2F1EC;
+  --dark: #0D0D0B;
+  --text: #0D0D0B;
+  --muted: #6B6B65;
+  --light: #9A9A94;
+  --green: #1A7A4A;
+  --green-light: #E8F5EE;
+  --green-bright: #4ADE80;
+  --border: rgba(0,0,0,0.08);
+  --border-md: rgba(0,0,0,0.13);
+  --r: 14px;
+  --r-lg: 22px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── TYPOGRAPHY ── */
+.serif { font-family: 'Fraunces', Georgia, serif; }
+h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.15; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(250,250,248,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  transition: box-shadow 0.3s;
+}
+.nav-inner {
+  max-width: 1060px; margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 700; font-size: 20px;
+  letter-spacing: -0.04em;
+  color: var(--text); text-decoration: none;
+}
+.nav-logo span { color: var(--green); }
+.nav-links {
+  display: flex; align-items: center;
+  gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-btn {
+  background: var(--text); color: var(--bg);
+  font-size: 14px; font-weight: 600;
+  padding: 10px 22px; border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: var(--green); }
+.nav-hamburger {
+  display: none; cursor: pointer;
+  background: none; border: none; padding: 4px;
+}
+.nav-hamburger svg { width: 24px; height: 24px; color: var(--text); }
+
+/* ── SHARED ── */
+.container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+.text-center { text-align: center; }
+.max-w-md { max-width: 600px; margin-left: auto; margin-right: auto; }
+.max-w-sm { max-width: 480px; margin-left: auto; margin-right: auto; }
+
+section { padding: 100px 0; }
+
+.section-label {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(30px, 3.8vw, 48px);
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px; color: var(--muted);
+  line-height: 1.7; margin-bottom: 60px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-size: 15px; font-weight: 600;
+  padding: 14px 30px; border-radius: 100px;
+  text-decoration: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s, color 0.2s;
+  border: none;
+}
+.btn-dark { background: var(--text); color: var(--bg); }
+.btn-dark:hover { background: var(--green); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-md); }
+.btn-outline:hover { background: var(--bg2); transform: translateY(-1px); }
+.btn-green { background: var(--green); color: white; }
+.btn-green:hover { background: #155E39; transform: translateY(-1px); }
+
+/* Checklist */
+.checklist {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 8px 24px;
+  list-style: none; margin-top: 24px;
+}
+.checklist li {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 14px; color: var(--muted);
+}
+.check-icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+  background: var(--green-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.check-icon svg { width: 10px; height: 10px; }
+
+/* ── HERO ── */
+#hero {
+  padding-top: 140px; padding-bottom: 100px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(42px, 6vw, 80px);
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  margin-bottom: 20px;
+}
+.hero-title .green { color: var(--green); }
+.hero-sub {
+  font-size: 19px; color: var(--muted);
+  line-height: 1.7; margin-bottom: 36px;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); pointer-events: none; z-index: -1;
+}
+.orb-1 { width: 500px; height: 500px; background: rgba(26,122,74,0.07); top: -100px; right: -150px; animation: orbf 12s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(26,122,74,0.05); bottom: -50px; left: -120px; animation: orbf 15s ease-in-out infinite reverse; }
+@keyframes orbf {
+  0%,100% { transform: translate(0,0); }
+  50% { transform: translate(25px,-20px); }
+}
+
+/* ── SERVICES (3 icons) ── */
+#services { background: var(--bg); padding-top: 80px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; text-align: center;
+}
+.service-item { padding: 8px; }
+.service-img {
+  width: 64px; height: 64px; margin: 0 auto 20px;
+  background: var(--green-light);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+}
+.service-item:hover .service-img { background: var(--green); transform: scale(1.08) rotate(-3deg); }
+.service-item:hover .service-img svg { stroke: white; }
+.service-img svg { transition: stroke 0.3s; }
+.service-item h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.service-item p { font-size: 15px; color: var(--muted); line-height: 1.65; }
+
+/* ── FEATURES (alternating) ── */
+#features { background: var(--bg2); }
+.feature-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+.feature-block:last-child { border-bottom: none; }
+.feature-block.reverse .feature-text { order: 2; }
+.feature-block.reverse .feature-visual { order: 1; }
+.feature-text h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.feature-text p { font-size: 16px; color: var(--muted); line-height: 1.75; margin-bottom: 28px; }
+.feature-visual {
+  background: white;
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+/* mini UI inside feature visuals */
+.fv-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 12px; }
+.fv-number { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 700; letter-spacing: -0.05em; color: var(--text); line-height: 1; }
+.fv-change { font-size: 13px; font-weight: 600; color: var(--green); margin-top: 6px; margin-bottom: 20px; }
+.fv-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fv-bar-label { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; }
+.fv-bar-track { flex: 1; height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.fv-bar-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 1s ease; }
+.fv-bar-val { font-size: 13px; font-weight: 600; color: var(--text); width: 40px; text-align: right; }
+.fv-sparkline { height: 60px; margin-top: 8px; }
+.fv-sparkline svg { width: 100%; height: 100%; }
+.fv-rank-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.fv-rank-row:last-child { border-bottom: none; }
+.fv-rank-kw { font-size: 14px; color: var(--text); }
+.fv-rank-pos { font-size: 14px; font-weight: 700; color: var(--green); }
+.fv-rank-change { font-size: 12px; color: var(--green); }
+
+/* ── TESTIMONIAL ── */
+#testimonial { background: var(--bg); }
+.testimonial-card {
+  max-width: 780px; margin: 0 auto;
+  background: var(--bg2);
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 56px;
+}
+.quote-mark {
+  font-family: 'Fraunces', serif;
+  font-size: 80px; font-weight: 700;
+  color: var(--green); line-height: 0.6;
+  margin-bottom: 24px; display: block;
+}
+.testimonial-text {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 300; font-style: italic;
+  color: var(--text); line-height: 1.55;
+  margin-bottom: 32px;
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: 14px;
+}
+.t-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px; color: var(--green);
+  flex-shrink: 0;
+}
+.t-name { font-weight: 600; font-size: 15px; }
+.t-title { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* ── FAQ ── */
+#faq { background: var(--bg2); }
+.faq-list { max-width: 700px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--border-md);
+  cursor: pointer;
+}
+.faq-item:first-child { border-top: 1px solid var(--border-md); }
+.faq-question {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; gap: 16px;
+  user-select: none;
+}
+.faq-question h3 { font-size: 17px; font-weight: 500; flex: 1; }
+.faq-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border-md);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.3s;
+}
+.faq-item.open .faq-icon { background: var(--green); transform: rotate(45deg); }
+.faq-icon svg { width: 14px; height: 14px; stroke: var(--text); transition: stroke 0.2s; }
+.faq-item.open .faq-icon svg { stroke: white; }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer p { font-size: 15px; color: var(--muted); line-height: 1.7; padding-bottom: 20px; }
+
+/* ── PRICING ── */
+#pricing { background: var(--bg); }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; align-items: start;
+}
+.pricing-card {
+  background: white;
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 36px 30px;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.pricing-card.featured { background: var(--dark); color: white; border-color: transparent; }
+.popular-badge {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--green); color: white;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 16px; border-radius: 100px; white-space: nowrap;
+}
+.p-tier { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 20px; }
+.pricing-card.featured .p-tier { color: rgba(255,255,255,0.4); }
+.p-price { font-family: 'Fraunces', serif; font-size: 52px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+.p-mo { font-size: 14px; color: var(--light); margin-bottom: 8px; margin-top: 4px; }
+.pricing-card.featured .p-mo { color: rgba(255,255,255,0.4); }
+.p-desc { font-size: 14px; color: var(--muted); line-height: 1.6; padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+.pricing-card.featured .p-desc { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
+.p-features { list-style: none; margin-bottom: 28px; }
+.p-feature { font-size: 14px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.pricing-card.featured .p-feature { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.08); }
+.p-feature::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+.pricing-card.featured .p-feature::before { background: var(--green-bright); }
+.p-btn {
+  width: 100%; padding: 15px; border-radius: 100px;
+  font-size: 15px; font-weight: 600; text-align: center;
+  text-decoration: none; display: block; cursor: pointer; border: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.p-btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-md); }
+.p-btn-outline:hover { background: var(--bg2); }
+.p-btn-white { background: white; color: var(--dark); }
+.p-btn-white:hover { background: var(--green-light); }
+
+/* ── PROCESS ── */
+#process { background: var(--bg2); }
+.process-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+}
+.process-step {
+  background: var(--bg2); padding: 36px 28px;
+  transition: background 0.25s;
+}
+.process-step:hover { background: white; }
+.step-n {
+  font-family: 'Fraunces', serif; font-size: 48px; font-weight: 700;
+  letter-spacing: -0.05em; color: var(--green); opacity: 0.22;
+  line-height: 1; margin-bottom: 18px;
+  transition: opacity 0.25s;
+}
+.process-step:hover .step-n { opacity: 0.55; }
+.process-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.process-step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ── CTA ── */
+#cta {
+  background: var(--dark); text-align: center;
+  padding: 120px 24px;
+}
+.cta-title {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -0.04em; line-height: 1.06;
+  color: white; margin-bottom: 18px;
+  max-width: 640px; margin-left: auto; margin-right: auto;
+}
+.cta-sub {
+  font-size: 17px; color: rgba(255,255,255,0.45);
+  line-height: 1.7; margin-bottom: 40px;
+  max-width: 440px; margin-left: auto; margin-right: auto;
+}
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-cta { background: white; color: var(--dark); font-size: 16px; font-weight: 600; padding: 17px 38px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-cta:hover { background: var(--green-bright); transform: translateY(-2px); }
+.btn-cta-ghost { background: transparent; color: rgba(255,255,255,0.55); font-size: 16px; font-weight: 500; padding: 17px 30px; border-radius: 100px; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); transition: border-color 0.2s, color 0.2s; }
+.btn-cta-ghost:hover { border-color: rgba(255,255,255,0.3); color: white; }
+.cta-trust { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+.cta-trust-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.32); }
+.cta-trust-item .check-icon { background: rgba(74,222,128,0.15); }
+.cta-trust-item .check-icon svg { stroke: var(--green-bright); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 40px 24px;
+}
+.footer-inner {
+  max-width: 1060px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; letter-spacing: -0.04em; color: white; text-decoration: none; }
+.footer-logo span { color: var(--green-bright); }
+.footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 14px; color: rgba(255,255,255,0.32); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy { font-size: 14px; color: rgba(255,255,255,0.25); }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg); padding: 20px 24px 28px; border-bottom: 1px solid var(--border-md); gap: 16px; }
+  .nav-hamburger { display: block; }
+  .services-grid { grid-template-columns: 1fr; gap: 40px; text-align: left; }
+  .service-img { margin: 0 0 16px; }
+  .feature-block { grid-template-columns: 1fr; gap: 32px; }
+  .feature-block.reverse .feature-text { order: unset; }
+  .feature-block.reverse .feature-visual { order: unset; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media (max-width: 540px) {
+  section { padding: 72px 0; }
+  .testimonial-card { padding: 32px 24px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .cta-trust { gap: 16px; flex-direction: column; align-items: flex-start; max-width: 240px; margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">SR<span> Kasvu</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Etusivu</a></li>
+      <li><a href="#services">Palvelut</a></li>
+      <li><a href="#pricing">Hinnat</a></li>
+      <li><a href="#faq">Kysymykset</a></li>
+      <li><a href="https://calendly.com/sulo-runsten/30min" class="nav-btn">Varaa tapaaminen</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Valikko">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container">
+    <div class="reveal">
+      <h1 class="hero-title serif">Enemmän asiakkaita<br><span class="green">verkosta.</span></h1>
+    </div>
+    <div class="reveal d1">
+      <p class="hero-sub max-w-sm">Rakennamme nettisivut ja Google-näkyvyyden pk-yrityksille — selkeästi, nopeasti ja tuloksiin keskittyen.</p>
+    </div>
+    <div class="reveal d2">
+      <a href="https://calendly.com/sulo-runsten/30min" class="btn btn-dark">Varaa nopea ilmainen palaveri</a>
+    </div>
+    <ul class="checklist reveal d3">
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#1A7A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+        Ei sidonta-aikaa
+      </li>
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#1A7A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+        Tulokset tai rahat takaisin
+      </li>
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#1A7A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+        Vastaus 24h sisällä
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="text-center max-w-md reveal">
+      <span class="section-label">Mitä teemme</span>
+      <h2 class="section-title">Kaikki mitä tarvitset kasvamiseen</h2>
+      <p class="section-sub">Yhdistämme modernin web-suunnittelun ja hakukoneoptimoinnin — yksi kumppani, yksi kokonaisuus.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <div class="service-img">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A7A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3>Nettisivut</h3>
+        <p>Räätälöity design, nopea lataus ja mobiilioptimointi. Sivusto joka muuttaa kävijät asiakkaiksi.</p>
+      </div>
+      <div class="service-item reveal d1">
+        <div class="service-img">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A7A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="7" x2="11" y2="15"/><line x1="7" y1="11" x2="15" y2="11"/></svg>
+        </div>
+        <h3>Google SEO</h3>
+        <p>Nousemme hakutuloksissa niillä sanoilla, joilla asiakkaasi etsivät juuri sinun palveluitasi.</p>
+      </div>
+      <div class="service-item reveal d2">
+        <div class="service-img">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A7A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Kasvu & Analytiikka</h3>
+        <p>Seuraamme dataa ja optimoimme joka kuukausi. Et arvaa — tiedät, mikä toimii.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+
+    <div class="feature-block reveal">
+      <div class="feature-text">
+        <h3>Sivusto joka tuo asiakkaita, ei vain näytä hyvältä</h3>
+        <p>Monet nettisivut ovat kauniita mutta passiivisia. Me rakennamme sivustot, joissa jokainen elementti on suunniteltu ohjaamaan kävijä yhteydenottoon — selkeä rakenne, nopea lataus ja toimiva mobiilikokemus.</p>
+        <a href="https://calendly.com/sulo-runsten/30min" class="btn btn-dark">Varaa tapaaminen</a>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-label">Konversioprosentti</div>
+        <div class="fv-number">8.4%</div>
+        <div class="fv-change">&#8593; 3.1x enemmän yhteydenottoja</div>
+        <div class="fv-bar-row"><div class="fv-bar-label">Ennen SR Kasvu</div><div class="fv-bar-track"><div class="fv-bar-fill" style="width:22%"></div></div><div class="fv-bar-val">2.1%</div></div>
+        <div class="fv-bar-row"><div class="fv-bar-label">Jälkeen</div><div class="fv-bar-track"><div class="fv-bar-fill" style="width:88%"></div></div><div class="fv-bar-val">8.4%</div></div>
+      </div>
+    </div>
+
+    <div class="feature-block reverse reveal">
+      <div class="feature-text">
+        <h3>Google löytää sinut ennen kilpailijaa</h3>
+        <p>Hakukoneoptimointi ei ole taikaa — se on systemaattista työtä. Tutkimme avainsanat, optimoimme sivuston teknisesti ja rakennamme auktoriteettia kuukausi kuukaudelta. Tulokset kasvavat jatkuvasti.</p>
+        <a href="https://calendly.com/sulo-runsten/30min" class="btn btn-dark">Varaa tapaaminen</a>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-label">Google-sijoitukset</div>
+        <div class="fv-rank-row"><div class="fv-rank-kw">lvi-asennus tampere</div><div><span class="fv-rank-pos">#1</span> <span class="fv-rank-change">&#8593; 18</span></div></div>
+        <div class="fv-rank-row"><div class="fv-rank-kw">putkimies helsinki</div><div><span class="fv-rank-pos">#2</span> <span class="fv-rank-change">&#8593; 24</span></div></div>
+        <div class="fv-rank-row"><div class="fv-rank-kw">sähköasentaja espoo</div><div><span class="fv-rank-pos">#1</span> <span class="fv-rank-change">&#8593; 31</span></div></div>
+        <div class="fv-rank-row"><div class="fv-rank-kw">autokorjaamo jyväskylä</div><div><span class="fv-rank-pos">#3</span> <span class="fv-rank-change">&#8593; 15</span></div></div>
+      </div>
+    </div>
+
+    <div class="feature-block reveal">
+      <div class="feature-text">
+        <h3>Näet tarkalleen, mistä kasvu tulee</h3>
+        <p>Ei arvailuja. Saat joka kuukausi selkeän raportin — kävijämäärät, avainsanasijoitukset, yhteydenotot. Pidät sinut jatkuvasti ajan tasalla ja tiedät aina, missä mennään.</p>
+        <a href="https://calendly.com/sulo-runsten/30min" class="btn btn-dark">Varaa tapaaminen</a>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-label">Orgaaninen liikenne</div>
+        <div class="fv-number" data-counter="312" data-suffix="%">0%</div>
+        <div class="fv-change">&#8593; kasvu 8 kuukaudessa</div>
+        <div class="fv-sparkline">
+          <svg viewBox="0 0 280 56" preserveAspectRatio="none" fill="none">
+            <defs>
+              <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1A7A4A" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#1A7A4A" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,52 C20,49 35,44 55,38 C80,28 100,42 118,30 C142,16 162,20 182,10 C202,2 230,6 280,1 L280,56 L0,56 Z" fill="url(#sg2)"/>
+            <path d="M0,52 C20,49 35,44 55,38 C80,28 100,42 118,30 C142,16 162,20 182,10 C202,2 230,6 280,1" stroke="#1A7A4A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="container">
+    <div class="testimonial-card reveal">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-text">SR Kasvu muutti koko liiketoimintamme. Puhelin soi nyt joka päivä uusien asiakkaiden kanssa — pelkästään orgaanisesti Googlesta. Investointi maksoi itsensä takaisin jo toisessa kuussa.</p>
+      <div class="testimonial-author">
+        <div class="t-avatar">JM</div>
+        <div>
+          <div class="t-name">Juha Mäkinen</div>
+          <div class="t-title">Toimitusjohtaja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="text-center max-w-md reveal">
+      <span class="section-label">Hinnoittelu</span>
+      <h2 class="section-title">Selkeä hinnoittelu, ei yllätyksiä</h2>
+      <p class="section-sub">Kaikki paketit sisältävät henkilökohtaisen kasvustrategian. Ei piilokustannuksia — koskaan.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card reveal">
+        <div class="p-tier">Starter</div>
+        <div class="p-price">129€</div>
+        <div class="p-mo">+ 79€ / kuukausi</div>
+        <p class="p-desc">Täydellinen aloituspaketti yritykselle joka haluaa ammattimaiset sivut ja perusnäkyvyyden.</p>
+        <ul class="p-features">
+          <li class="p-feature">5-sivuinen nettisivu</li>
+          <li class="p-feature">Mobiilioptimoitu design</li>
+          <li class="p-feature">Paikallinen hakukoneoptimointi</li>
+          <li class="p-feature">Google My Business -hallinta</li>
+          <li class="p-feature">Kuukausiraportti</li>
+        </ul>
+        <a href="https://calendly.com/sulo-runsten/30min" class="p-btn p-btn-outline">Aloita nyt</a>
+      </div>
+
+      <div class="pricing-card featured reveal d1">
+        <div class="popular-badge">Suosituin</div>
+        <div class="p-tier">Kasvu</div>
+        <div class="p-price" style="color:white;">279€</div>
+        <div class="p-mo">+ 219€ / kuukausi</div>
+        <p class="p-desc">Täydellinen paketti yritykselle joka haluaa dominoida hakutuloksia ja kasvaa nopeasti.</p>
+        <ul class="p-features">
+          <li class="p-feature">10-sivuinen nettisivu</li>
+          <li class="p-feature">Kattava SEO-strategia</li>
+          <li class="p-feature">Sisältömarkkinointi (4 art./kk)</li>
+          <li class="p-feature">Konversio-optimointi</li>
+          <li class="p-feature">Kilpailija-analyysi</li>
+          <li class="p-feature">Priorisoitu tuki</li>
+        </ul>
+        <a href="https://calendly.com/sulo-runsten/30min" class="p-btn p-btn-white">Aloita nyt</a>
+      </div>
+
+      <div class="pricing-card reveal d2">
+        <div class="p-tier">Premium</div>
+        <div class="p-price">699€</div>
+        <div class="p-mo">+ 499€ / kuukausi</div>
+        <p class="p-desc">Täysi kasvupaketti markkinajohtajuuteen — kaikki mitä tarvitaan digitaaliseen dominanssiin.</p>
+        <ul class="p-features">
+          <li class="p-feature">Rajaton sivumäärä</li>
+          <li class="p-feature">Aggressiivinen SEO</li>
+          <li class="p-feature">Blogi + kirjoitus (8/kk)</li>
+          <li class="p-feature">Google Ads -hallinta</li>
+          <li class="p-feature">Kuukausipalaaveri + roadmap</li>
+          <li class="p-feature">Oma kasvupäällikkö</li>
+        </ul>
+        <a href="https://calendly.com/sulo-runsten/30min" class="p-btn p-btn-outline">Aloita nyt</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="text-center max-w-md reveal">
+      <span class="section-label">Prosessi</span>
+      <h2 class="section-title">Näin se toimii</h2>
+      <p class="section-sub">Selkeä ja läpinäkyvä prosessi — tiedät aina missä mennään.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="step-n">01</div>
+        <h3>Ilmainen tapaaminen</h3>
+        <p>Tutustumme yritykseesi ja markkinaasi. Saat selkeän kuvan mahdollisuuksistasi — ilman sitoumuksia.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">02</div>
+        <h3>Strategia</h3>
+        <p>Räätälöity suunnitelma — mitkä avainsanat, millainen sivusto, millä aikataululla tulokset syntyvät.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">03</div>
+        <h3>Toteutus</h3>
+        <p>Rakennamme sivuston ja käynnistämme SEO-työn. Pidämme sinut ajan tasalla koko ajan.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">04</div>
+        <h3>Kasvu</h3>
+        <p>Seuraamme dataa ja optimoimme joka kuukausi. Kasvu ei pysähdy — me emme pysähdy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="text-center max-w-md reveal">
+      <span class="section-label">Kysymykset</span>
+      <h2 class="section-title">Usein kysytyt kysymykset</h2>
+      <p class="section-sub">Selkeät vastaukset yleisimpiin kysymyksiin.</p>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Kuinka nopeasti näen tuloksia?</h3>
+          <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg></div>
+        </div>
+        <div class="faq-answer"><p>Nettisivut valmistuvat 1 viikossa. SEO-tulokset alkavat näkyä yleensä 1–4 kuukaudessa — hakukoneoptimointi on pitkäjänteistä työtä, mutta tulokset ovat pysyviä.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Tarvitseeko minulla olla olemassa olevaa sisältöä tai tekstejä?</h3>
+          <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg></div>
+        </div>
+        <div class="faq-answer"><p>Ei tarvitse. Hoidamme tekstit, kuvaukset ja sisällön puolestasi. Sinun tarvitsee vain kertoa yrityksestäsi — me teemme loput.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Mitä jos olen jo kokeillut SEO:ta eikä se toiminut?</h3>
+          <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg></div>
+        </div>
+        <div class="faq-answer"><p>Useimmiten syy on se, että on tehty väärät asiat tai ei ole odotettu tarpeeksi kauan. Teemme aluksi ilmaisen analyysin tilanteestasi ja kerromme rehellisesti, mitä voidaan parantaa.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Onko sopimuksessa sidonta-aika?</h3>
+          <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg></div>
+        </div>
+        <div class="faq-answer"><p>Ei ole. Voit lopettaa milloin tahansa kuukauden varoitusajalla. Luotamme työmme tuloksiin — emme pakota jäämään.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Voinko päivittää oman sivustoni sisältöä itse?</h3>
+          <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg></div>
+        </div>
+        <div class="faq-answer"><p>Sinun ei tarvitse huolehtia siitä. Me hallinnoimme sivustoasi puolestasi — riittää kun kerrot mitä haluat muuttaa, ja me hoidamme loput. Nopea, vaivaton ja aina ajan tasalla.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <span class="section-label" style="color:#4ADE80; display:block; margin-bottom:14px;">Aloita tänään</span>
+  <h2 class="cta-title">Valmis kasvamaan verkossa?</h2>
+  <p class="cta-sub">Aloitetaan ilmaisella tapaamisella. Ei sitoumuksia, ei myyntipaineita.</p>
+  <div class="cta-actions">
+    <a href="https://calendly.com/sulo-runsten/30min" class="btn-cta">Varaa ilmainen tapaaminen</a>
+    <a href="tel:+358400366771" class="btn-cta-ghost">Soita meille</a>
+  </div>
+  <div class="cta-trust">
+    <div class="cta-trust-item">
+      <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+      Ei sidonta-aikaa
+    </div>
+    <div class="cta-trust-item">
+      <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+      Tulokset tai rahat takaisin
+    </div>
+    <div class="cta-trust-item">
+      <div class="check-icon"><svg viewBox="0 0 10 10" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,5 4,7.5 8,3"/></svg></div>
+      Vastaus 24h sisällä
+    </div>
+  </div>
+
+  <div style="max-width: 800px; margin: 56px auto 0;">
+    <h3 class="serif" style="color: white; font-weight: 700; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.03em; margin-bottom: 8px;">Varaa nopea puhelu vain muutamalla klikkauksella</h3>
+    <p style="color: rgba(255,255,255,0.5); font-size: 15px; font-weight: 500; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+      Tästä alhaalta
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="2" x2="8" y2="13"/><polyline points="3,8 8,13 13,8"/></svg>
+    </p>
+    <div style="background: white; border-radius: var(--r-lg); overflow: hidden; text-align: left;">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/sulo-runsten/30min?text_color=000000&primary_color=29a52c" style="min-width:320px;height:700px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#hero" class="footer-logo">SR<span> Kasvu</span></a>
+    <ul class="footer-links">
+      <li><a href="#services">Palvelut</a></li>
+      <li><a href="#pricing">Hinnat</a></li>
+      <li><a href="#faq">Kysymykset</a></li>
+      <li><a href="mailto:srkasvu@gmail.com">srkasvu@gmail.com</a></li>
+      <li><a href="tel:+358400366771">+358 400 366 771</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2025 SR Kasvu</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Counter
+  function runCounter(el) {
+    const target = parseInt(el.dataset.counter);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const dur = 1600;
+    const t0 = performance.now();
+    function step(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 4);
+      el.textContent = prefix + Math.round(e * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const cObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { runCounter(e.target); cObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => cObs.observe(el));
+
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.07)' : 'none';
+  }, { passive: true });
+
+  // Hamburger
+  const ham = document.getElementById('hamburger');
+  const links = document.getElementById('navLinks');
+  ham.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Smooth scroll with offset
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 72, behavior: 'smooth' }); }
+    });
+  });
+})();
+</script>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
