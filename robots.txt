@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sr-kasvu.netlify.app/sitemap.xml
